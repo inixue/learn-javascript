@@ -8,22 +8,40 @@
 <body>
   <script>
 
-    let arr = [1, 6, 2, 7, 3, 0, 7, 98, 7, 3, 6, 0, 7, 4, 3, 2, 12, 18, 7, 89, 0]
-    
-    let moveZeroes = function(nums) {
+    /**
+     * 想象成是两个数组，非0的按顺序放到第二个数组上，后面添0。用一个数组实现。
+     */
+    function moveZeroes_1 (nums) {
+      let j = 0, len = nums.length;
+      for (let i = 0; i < len; i++) {
+        if (nums[i] != 0) {
+          nums[j++] = nums[i]
+        }
+      }
+      while (j < len) {
+        nums[j++] = 0;
+      }
+    }
+
+    /**
+     * 交换位置
+     */
+    function moveZeroes_2 (nums) {
       let j = 0;
       for (let i = 0; i < nums.length; i++) {
         if (nums[i] != 0) {
-          if (j < i){
-            nums[j] = nums[i]
-            nums[i] = 0
-          }
+          let tmp = nums[j]
+          nums[j] = nums[i]
+          nums[i] = tmp 
           j++
         }
       }
     };
-    moveZeroes(arr)
-    console.log(arr)
+    
+    let arr = [1, 6, 2, 7, 3, 0, 0, 0, 7, 98, 7, 3, 6, 0, 7, 4, 3, 2, 12, 18, 7, 89, 0]
+    moveZeroes_1(arr)
+    console.log("arr", arr)
+
 
   </script>
 </body>
