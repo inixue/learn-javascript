@@ -26,10 +26,23 @@
       }
     }
 
+    // 双层循环 用第一个每一位的字符和后面所有字符串的每一位字符比较
+    function longestCommonPrefix_2 (arr) {
+      let prefix = '';
+      if (!arr.length) return prefix;
+      for (let i=0; i<arr[0].length; i++) {
+        for (let j=0; j<arr.length; j++) {
+          if (arr[0][i] !== arr[j][i]) return prefix
+        }
+        prefix += arr[0][i]
+      }
+      return prefix
+    }
 
-    let arr = ['12375', '1235678', '123867', '1265452', '12354',]
 
-    console.log(longestCommonPrefix_1(arr))
+    let arr = ['12375', '1235678', '123867', '1235452', '12354',]
+
+    console.log(longestCommonPrefix_2(arr))
     console.log(arr.join('&').split('&')) // 字符串
     arr.splice(0, 2, "William") // 数组
     console.log(arr)
