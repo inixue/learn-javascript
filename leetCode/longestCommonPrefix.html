@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>longestCommonPrefix</title>
+</head>
+<body>
+  <script>
+
+    /**
+     * @题目:  查找字符串数组中的最长公共前缀。
+     * @例1: 输入: ["flower","flow","flight"]， 输出 "fl"。公共前缀"fl"
+     * @例2: 输入: ["dog","racecar","car"]， 输出 ""。没有公共前缀
+     */
+
+    // 把第一个字符串当作前缀，后面的每一个字符串有没有包含前缀，不包含就删除前缀后面的一位，比较到最后。
+    function longestCommonPrefix_1 (arr) {
+      let prefix = arr[0] || ''
+      for (let i=1; i<arr.length; i++){
+        if (prefix && arr[i].indexOf(prefix) === -1) {
+          prefix = prefix.slice(0, prefix.length - 1) // 字符串、数组
+        } else {
+          return prefix
+        }
+      }
+    }
+
+
+    let arr = ['12375', '1235678', '123867', '1265452', '12354',]
+
+    console.log(longestCommonPrefix_1(arr))
+    console.log(arr.join('&').split('&')) // 字符串
+    arr.splice(0, 2, "William") // 数组
+    console.log(arr)
+
+  </script>
+</body>
+</html>
