@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>binaryTree</title>
+</head>
+<body>
+  
+  <script>
+
+    // 验证二叉搜索树
+    var isValidBST = function(root) {
+      let max = Infinity, min = -Infinity;
+      function judge(node, max, min){
+        if(node == null)return true;
+        if(node.val < max && node.val > min){
+          return judge(node.left, node.val, min) && judge(node.right, max, node.val);
+        }
+        return false;
+      }
+      return judge(root, max, min);
+    };
+
+    function BinaryTree () {
+      this.root = null
+      function Node (data) {
+        this.data = data
+        this.left = null
+        this.right = null
+      }
+
+      BinaryTree.prototype.getDepth = function () {
+        let TreeDepth = function (pRoot) {
+          if(pRoot === null) return 0;
+          var left = TreeDepth(pRoot.left);
+          console.log('left', left)
+          var right = TreeDepth(pRoot.right);
+          console.log('right', right)
+          console.log(left, right)
+          return Math.max(left,right) + 1;
+        }
+        return TreeDepth(this.root);
+      }
+
+      BinaryTree.prototype.getSize = function () {
+        let arr = []
+        let inOrderMethod = function (node) {
+          if (node !== null) {
+            inOrderMethod(node.left)
+            arr.push(node.data)
+            inOrderMethod(node.right)
+          }
+        }
+        inOrderMethod(this.root)
+        return arr.length
+      }
+
+      // 中序遍历 访问左子树 -> 访问根 -> 访问右子树
+      BinaryTree.prototype.inOrder = function () {
+        let inOrderMethod = function (node) {
+          if (node !== null) {
+            inOrderMethod(node.left)
+            console.log(node.data)
+            inOrderMethod(node.right)
+          }
+        }
+        inOrderMethod(this.root)
+      }
+
+      // 前序遍历 访问根 -> 访问左子树 -> 访问右子树
+      BinaryTree.prototype.preOrder = function () {
+        let preOrderMethod = function (node) {
+          if (node !== null) {
+            console.log(node.data)
+            preOrderMethod(node.left)
+            preOrderMethod(node.right)
+          }
+        }
+        preOrderMethod(this.root)
+      }
+
+      // 后序遍历 访问左子树 -> 访问右子树 -> 访问根
+      BinaryTree.prototype.postOrder = function () {
+        let postOrderMethod = function (node) {
+          if (node !== null) {
+            postOrderMethod(node.left)
+            postOrderMethod(node.right)
+            console.log(node.data)
+          }
+        }
+        postOrderMethod(this.root)
+      }
+
+
+      // 查找最小值
+      BinaryTree.prototype.getMin = function () {
+        let current = this.root
+        while (current.left !== null) {
+          current = current.left
+        }
+        return current.data
+      }
+
+      // 查找最大值
+      BinaryTree.prototype.getMax = function () {
+        let current = this.root
+        while (current.right !== null) {
+          current = current.right
+        }
+        return current.data
+      }
+
+      // 查找特定值
+      BinaryTree.prototype.find = function (data) {
+        let current = this.root
+        while (current !== null) {
+          if (data === current.data) {
+            return current
+          } else if (data < current.data) {
+            current = current.left
+          } else {
+            current = current.right
+          }
+        }
+        return -1
+      }
+
+      // 删除节点
+      BinaryTree.prototype.remove = function (data) {
+        let removeNode = (node, data) => {
+          if (node === null) return null;
+          if (node.data === data) {
+            if (node.left === null && node.right === null) return null
+            if (node.left === null) return node.right;
+            if (node.right === null) return node.left;
+            if (node.left !== null && node.right !== null) {
+              let _node = this.getMin(node.right);
+              node.data = _node.data;
+              node.right = removeNode(node.right, data);
+              return node
+            }
+          } else if (data < node.data) {
+            node.left = removeNode(node.left, data);
+            return node;
+          } else {
+            node.right = removeNode(node.right, data);
+            return node;
+          }
+        }
+        return removeNode(this.root, data)
+      }
+
+      // 递归插入节点
+      BinaryTree.prototype.insert = function (data) {
+        let newNode = new Node(data)
+        if (this.root === null) {
+          this.root = newNode
+        } else {
+          let current = this.root
+          while (true) {
+            if (data < current.data) {
+              if (current.left === null) {
+                current.left = newNode
+                break;
+              }
+              current = current.left
+            } else {
+              if (current.right === null) {
+                current.right = newNode
+                break;
+              }
+              current = current.right
+            }
+          }
+        }
+      }
+
+
+
+      // 递归插入节点
+      BinaryTree.prototype.insertWithRecursive = function (data) {
+        let insertNodeWithRecursive = function (node, newNode) {
+          if (newNode.data < node.data) {
+            if (node.left === null) {
+              node.left = newNode
+            } else {
+              insertNodeWithRecursive(node.left, newNode)
+            }
+          } else {
+            if (node.right === null) {
+              node.right = newNode
+            } else {
+              insertNodeWithRecursive(node.right, newNode)
+            }
+          }
+        }
+        let newNode = new Node(data)
+        if (this.root === null) {
+          this.root = newNode
+        } else {
+          insertNodeWithRecursive(this.root, newNode)
+        }
+      }
+    } 
+
+    let nums = new BinaryTree();
+
+    nums.insert(55)
+    nums.insert(50)
+    nums.insert(60)
+    nums.insert(52)
+    nums.insert(57)
+    nums.insert(43)
+
+    console.log(nums)
+
+    console.log('----中----')
+    console.log(nums.inOrder())
+
+    console.log('----前----')
+    console.log(nums.preOrder())
+
+    console.log('----后----')
+    console.log(nums.postOrder())
+
+    console.log('最大值', nums.getMax())
+    console.log('最小值', nums.getMin())
+
+    console.log('特定值', nums.find(80))
+
+    console.log('节点数', nums.getSize())
+
+    console.log('----getDepth----')
+    console.log(nums.getDepth())
+
+  </script>
+</body>
+</html>
