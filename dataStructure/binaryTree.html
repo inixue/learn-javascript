@@ -34,10 +34,7 @@
         let TreeDepth = function (pRoot) {
           if(pRoot === null) return 0;
           var left = TreeDepth(pRoot.left);
-          console.log('left', left)
           var right = TreeDepth(pRoot.right);
-          console.log('right', right)
-          console.log(left, right)
           return Math.max(left,right) + 1;
         }
         return TreeDepth(this.root);
@@ -226,9 +223,9 @@
 
     console.log('最大值', nums.getMax())
     console.log('最小值', nums.getMin())
-
     console.log('特定值', nums.find(80))
 
+    console.log('----getSize----')
     console.log('节点数', nums.getSize())
 
     console.log('----getDepth----')
