@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>queue</title>
+</head>
+<body>
+  <script>
+    // 列队：先进先出
+
+
+    function Queue () {
+      this.items = []
+
+      // 将元素加入到队列中
+      Queue.prototype.push = function (data) {
+        this.items.push(data)
+      }
+
+      // 从队列中删除前端元素
+      Queue.prototype.shift = function () {
+        return this.items.shift()
+      }
+
+      // 查看前端元素
+      Queue.prototype.getFront = function () {
+        return this.items[0]
+      }
+
+      // 查看后端元素
+      Queue.prototype.getBack = function () {
+        return this.items[this.items.length - 1]
+      }
+
+      // 查看列队是不是空的
+      Queue.prototype.isEmpty = function () {
+        return this.items.length === 0
+      }
+
+      // 查看列队是不是空的
+      Queue.prototype.size = function () {
+        return this.items.length
+      }
+
+      // toString 方法
+      Queue.prototype.toString = function () {
+        let resultString = ''
+        for (let i = 0; i < this.items.length; i++) {
+          resultString += this.items[i] + ''
+        }
+        return resultString
+      }
+
+      // 清空列队方法
+      Queue.prototype.clear = function () {
+        this.items = []
+        return true
+      }
+
+    }
+
+    let queue = new Queue()
+    queue.push(1)
+    queue.push(2)
+    queue.push(3)
+    queue.push(4)
+    queue.push(5)
+    console.log(queue)
+    queue.shift()
+    console.log(queue)
+    console.log(queue.toString())
+    queue.clear()
+    console.log(queue)
+
+  </script>
+</body>
+</html>

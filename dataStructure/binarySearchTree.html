@@ -3,11 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>binaryTree</title>
+  <title>binarySearchTree</title>
 </head>
 <body>
   
   <script>
+
+    // 二叉树：二叉树每个节点的子节点不允许超过两个。通过将子节点的个数限定为2，可以写出高效的程序在树中插入、查找和删除数据。
+    // 二叉搜索树（二叉查找树、二叉排序树）：二叉搜索树是一种特殊的二叉树，相对较小的值保存在左节点中，较大的值保存在右节点中。
+
+
+
 
     // 验证二叉搜索树
     var isValidBST = function(root) {
@@ -22,7 +28,8 @@
       return judge(root, max, min);
     };
 
-    function BinaryTree () {
+    // 二叉搜索树
+    function binarySearchTree () {
       this.root = null
       function Node (data) {
         this.data = data
@@ -30,7 +37,7 @@
         this.right = null
       }
 
-      BinaryTree.prototype.getDepth = function () {
+      binarySearchTree.prototype.getDepth = function () {
         let TreeDepth = function (pRoot) {
           if(pRoot === null) return 0;
           var left = TreeDepth(pRoot.left);
@@ -40,7 +47,7 @@
         return TreeDepth(this.root);
       }
 
-      BinaryTree.prototype.getSize = function () {
+      binarySearchTree.prototype.getSize = function () {
         let arr = []
         let inOrderMethod = function (node) {
           if (node !== null) {
@@ -54,7 +61,7 @@
       }
 
       // 中序遍历 访问左子树 -> 访问根 -> 访问右子树
-      BinaryTree.prototype.inOrder = function () {
+      binarySearchTree.prototype.inOrder = function () {
         let inOrderMethod = function (node) {
           if (node !== null) {
             inOrderMethod(node.left)
@@ -66,7 +73,7 @@
       }
 
       // 前序遍历 访问根 -> 访问左子树 -> 访问右子树
-      BinaryTree.prototype.preOrder = function () {
+      binarySearchTree.prototype.preOrder = function () {
         let preOrderMethod = function (node) {
           if (node !== null) {
             console.log(node.data)
@@ -78,7 +85,7 @@
       }
 
       // 后序遍历 访问左子树 -> 访问右子树 -> 访问根
-      BinaryTree.prototype.postOrder = function () {
+      binarySearchTree.prototype.postOrder = function () {
         let postOrderMethod = function (node) {
           if (node !== null) {
             postOrderMethod(node.left)
@@ -91,7 +98,7 @@
 
 
       // 查找最小值
-      BinaryTree.prototype.getMin = function () {
+      binarySearchTree.prototype.getMin = function () {
         let current = this.root
         while (current.left !== null) {
           current = current.left
@@ -100,7 +107,7 @@
       }
 
       // 查找最大值
-      BinaryTree.prototype.getMax = function () {
+      binarySearchTree.prototype.getMax = function () {
         let current = this.root
         while (current.right !== null) {
           current = current.right
@@ -109,7 +116,7 @@
       }
 
       // 查找特定值
-      BinaryTree.prototype.find = function (data) {
+      binarySearchTree.prototype.find = function (data) {
         let current = this.root
         while (current !== null) {
           if (data === current.data) {
@@ -124,7 +131,7 @@
       }
 
       // 删除节点
-      BinaryTree.prototype.remove = function (data) {
+      binarySearchTree.prototype.remove = function (data) {
         let removeNode = (node, data) => {
           if (node === null) return null;
           if (node.data === data) {
@@ -149,7 +156,7 @@
       }
 
       // 递归插入节点
-      BinaryTree.prototype.insert = function (data) {
+      binarySearchTree.prototype.insert = function (data) {
         let newNode = new Node(data)
         if (this.root === null) {
           this.root = newNode
@@ -176,7 +183,7 @@
 
 
       // 递归插入节点
-      BinaryTree.prototype.insertWithRecursive = function (data) {
+      binarySearchTree.prototype.insertWithRecursive = function (data) {
         let insertNodeWithRecursive = function (node, newNode) {
           if (newNode.data < node.data) {
             if (node.left === null) {
@@ -201,7 +208,7 @@
       }
     } 
 
-    let nums = new BinaryTree();
+    let nums = new binarySearchTree();
 
     nums.insert(55)
     nums.insert(50)
