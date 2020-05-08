@@ -14,11 +14,9 @@
 
     function hasGroupsSizeX (deck) {
       if (deck.length < 2) return false
-      let arr = deck.sort((a, b) => a - b)
       // let map = new Map()
       let obj = {}
-      let index = 0
-      arr.forEach((item, index) => {
+      deck.forEach((item, index) => {
         // if (map.has(item)) {
         //   map.set(item, [item, ...map.get(item)])
         // } else {
