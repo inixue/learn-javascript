@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>17. 电话号码的字母组合</title>
+</head>
+<body>
+  <div>
+    <a href="https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/">17. 电话号码的字母组合</a>
+  </div>
+  <script>
+
+    // 先合并两位，前两位合并之后的数组，在和第三位合并，一只合并完成
+    function phoneNumber (str) {
+
+      let test = function (str1, str2) {
+        let newArr = []
+        for (let i = 0; i < str1.length; i++) {
+          for (let j = 0; j < str2.length; j++){
+            newArr.push(`${str1[i]}${str2[j]}`)
+          }
+        }
+        return newArr
+      }
+
+      if (str === '') return []
+      let allArr = ['', '', 'abc', 'def', 'ghi', 'jkl', 'mno', 'pqrs', 'tuv', 'wxyz',]
+      let result = [...allArr[str[0]]]
+      for (let i = 1; i < str.length; i++) {
+        result = test(result, allArr[str[i]])
+      }
+      return result
+    }
+
+    console.log(phoneNumber('27'))
+
+  </script>
+</body>
+</html>

@@ -3,16 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>longestCommonPrefix</title>
+  <title>14. 最长公共前缀</title>
 </head>
 <body>
+  <div>
+    <a href="https://leetcode-cn.com/problems/longest-common-prefix/">14. 最长公共前缀</a>
+  </div>
   <script>
-
-    /**
-     * @题目:  查找字符串数组中的最长公共前缀。
-     * @例1: 输入: ["flower","flow","flight"]， 输出 "fl"。公共前缀"fl"
-     * @例2: 输入: ["dog","racecar","car"]， 输出 ""。没有公共前缀
-     */
 
     // 把第一个字符串当作前缀，后面的每一个字符串有没有包含前缀，不包含就删除前缀后面的一位，比较到最后。
     function longestCommonPrefix_1 (arr) {
