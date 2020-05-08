@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>914. 卡牌分组</title>
+</head>
+<body>
+  <div>
+    <a href="https://leetcode-cn.com/problems/x-of-a-kind-in-a-deck-of-cards/">914. 卡牌分组</a>
+  </div>
+  <script>
+
+
+    function hasGroupsSizeX (deck) {
+      if (deck.length < 2) return false
+      let arr = deck.sort((a, b) => a - b)
+      // let map = new Map()
+      let obj = {}
+      let index = 0
+      arr.forEach((item, index) => {
+        // if (map.has(item)) {
+        //   map.set(item, [item, ...map.get(item)])
+        // } else {
+        //   map.set(item, [item])
+        // }
+        if (obj[item]) {
+          obj[item].push(item)
+        } else {
+          obj[item] = new Array 
+          obj[item].push(item)
+        }
+      });
+      // let newA = map.values()
+      let newA = Object.values(obj)
+      console.log(newA)
+      let max = 0
+      for (const iterator of newA) {
+        console.log(iterator)
+        max = gcd (iterator.length, max)
+      }
+      return max >= 2
+    }
+
+    // 最大公约数
+    // a, b的最大公约数 假如 a = c * d + f 如果f=0，d就是最大公约数，如果f!=0
+    function gcd (a, b) {
+      return b === 0 ? a : gcd(b, a % b)
+    }
+
+
+    console.log(hasGroupsSizeX([0,0,0,1,1,1,2,2,2]))
+
+
+  </script>
+</body>
+</html>
