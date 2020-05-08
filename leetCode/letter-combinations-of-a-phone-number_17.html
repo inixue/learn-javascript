@@ -12,7 +12,7 @@
   <script>
 
     // 先合并两位，前两位合并之后的数组，在和第三位合并，一只合并完成
-    function phoneNumber (str) {
+    function letterCombinations (digits) {
 
       let test = function (str1, str2) {
         let newArr = []
@@ -24,16 +24,16 @@
         return newArr
       }
 
-      if (str === '') return []
+      if (digits === '') return []
       let allArr = ['', '', 'abc', 'def', 'ghi', 'jkl', 'mno', 'pqrs', 'tuv', 'wxyz',]
-      let result = [...allArr[str[0]]]
-      for (let i = 1; i < str.length; i++) {
-        result = test(result, allArr[str[i]])
+      let result = [...allArr[digits[0]]]
+      for (let i = 1; i < digits.length; i++) {
+        result = test(result, allArr[digits[i]])
       }
       return result
     }
 
-    console.log(phoneNumber('27'))
+    console.log(letterCombinations('28'))
 
   </script>
 </body>

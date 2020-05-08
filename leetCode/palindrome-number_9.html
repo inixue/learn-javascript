@@ -15,24 +15,24 @@
     // ~~num = num
     // ~~num 等于 num向下取整
     // 原数字/10后取整，新数字*10加上原数字%10，当新数字大于等于原数字时，新数字的位数大于（原数字位数是奇数）等于（原数字位数是偶数）时，比较新老数字，注意原数字位数是奇数的比较
-    function palindromeNumber_1 (num) {
-      if (num < 0 || (num % 10 === 0 && num !== 0)) {
+    function isPalindrome_1 (x) {
+      if (x < 0 || (x % 10 === 0 && x !== 0)) {
         return false
       }
       let reverseNum = 0
-      while (reverseNum < num) {
-        reverseNum = (reverseNum * 10) + (num % 10)
-        num = ~~(num / 10)
+      while (reverseNum < x) {
+        reverseNum = (reverseNum * 10) + (x % 10)
+        x = ~~(x / 10)
       }
-      return (reverseNum === num) || (~~(reverseNum / 10) === num)
+      return (reverseNum === x) || (~~(reverseNum / 10) === x)
     }
  
     // 设定一个循环，从整数第一位下标开始，第一位与最后一位对比，第二位与倒数第二位对比，回文两边的数字会全部相等，循环次数最大值为~~(num.length/2), 而如果不一致，则判断非回文，即刻退出循环。
-    function palindromeNumber_2 (num) {
-      if (num < 0) return false
-      let x = num.toString(), length = x.length, halfLength =length / 2
+    function isPalindrome_2 (x) {
+      if (x < 0) return false
+      let str = x.toString(), length = str.length, halfLength =length / 2
       for(let i = 0; i < halfLength; i++) {
-        if (x[i] !== x[length-1-i]) {
+        if (str[i] !== str[length-1-i]) {
           return false
         }
       }
@@ -41,7 +41,7 @@
 
     
 
-    console.log(palindromeNumber_2(1234554321)) 
+    console.log(isPalindrome_1(1234554321)) 
 
     
     

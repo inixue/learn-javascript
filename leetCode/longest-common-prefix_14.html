@@ -12,10 +12,10 @@
   <script>
 
     // 把第一个字符串当作前缀，后面的每一个字符串有没有包含前缀，不包含就删除前缀后面的一位，比较到最后。
-    function longestCommonPrefix_1 (arr) {
-      let prefix = arr[0] || ''
-      for (let i=1; i<arr.length; i++){
-        if (prefix && arr[i].indexOf(prefix) === -1) {
+    function longestCommonPrefix_1 (strs) {
+      let prefix = strs[0] || ''
+      for (let i=1; i<strs.length; i++){
+        if (prefix && strs[i].indexOf(prefix) === -1) {
           prefix = prefix.slice(0, prefix.length - 1) // 字符串、数组
         } else {
           return prefix
@@ -24,14 +24,14 @@
     }
 
     // 双层循环 用第一个每一位的字符和后面所有字符串的每一位字符比较
-    function longestCommonPrefix_2 (arr) {
+    function longestCommonPrefix_2 (strs) {
       let prefix = '';
-      if (!arr.length) return prefix;
-      for (let i=0; i<arr[0].length; i++) {
-        for (let j=0; j<arr.length; j++) {
-          if (arr[0][i] !== arr[j][i]) return prefix
+      if (!strs.length) return prefix;
+      for (let i=0; i<strs[0].length; i++) {
+        for (let j=0; j<strs.length; j++) {
+          if (strs[0][i] !== strs[j][i]) return prefix
         }
-        prefix += arr[0][i]
+        prefix += strs[0][i]
       }
       return prefix
     }
@@ -39,10 +39,7 @@
 
     let arr = ['12375', '1235678', '123867', '1235452', '12354',]
 
-    console.log(longestCommonPrefix_2(arr))
-    console.log(arr.join('&').split('&')) // 字符串
-    arr.splice(0, 2, "William") // 数组
-    console.log(arr)
+    console.log(longestCommonPrefix_1(arr))
 
   </script>
 </body>

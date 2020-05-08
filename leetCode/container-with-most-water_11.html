@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>11. 盛最多水的容器</title>
+</head>
+<body>
+  <div>
+    <a href="https://leetcode-cn.com/problems/container-with-most-water/">11. 盛最多水的容器</a>
+  </div>
+  <script>
+
+    // 
+    function maxArea (height) {
+      let start = 0
+      let end = height.length - 1
+      let max = 0
+      while (start < end) {
+        let area = Math.min(height[start], height[end])  * (end - start)
+        max = Math.max(max, area);
+        if (height[start] <= height[end]) {
+          start++
+        } else {
+          end--
+        }
+      }
+      return max
+    }
+
+    console.log(maxArea([1, 2, 3, 4, 5, 6]))
+
+
+  </script>
+</body>
+</html>
