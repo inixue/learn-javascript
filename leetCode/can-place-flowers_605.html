@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>605. 种花问题</title>
+</head>
+<body>
+  <div>
+    <a href="https://leetcode-cn.com/problems/can-place-flowers/">605. 种花问题</a>
+  </div>
+  <script>
+
+    // 判断连续3个数都是0 就可以插花 把num++记录插入的朵树 把中间的0设置为1，然后循环下一位比较。
+    // 注意 1.数组小于3个长度是的判断 2.前两位和后两位都是0的情况
+    function canPlaceFlowers(flowerbed, n) {
+      let pre = flowerbed[0], num = 0
+
+      // 数组小于3个长度是的判断
+      if (flowerbed.length === 1) {
+        flowerbed[0] ? null : num++
+      }
+      if (flowerbed.length === 2) {
+        (flowerbed[0] || flowerbed[1]) ? null : num++
+      }
+
+      // 前两位和后两位都是0的情况
+      if (flowerbed.length > 2) {
+        if (!flowerbed[0] && !flowerbed[1]) num++
+        if (!flowerbed[flowerbed.length-1] && !flowerbed[flowerbed.length-2]) num++
+      }
+
+      for(let i = 1; i < flowerbed.length - 1; i++) {
+        let next = flowerbed[i+1]
+        if (!pre && !flowerbed[i] && !next) {
+          num++
+          flowerbed[i] = 1
+        } 
+        pre = flowerbed[i]
+      }
+      console.log(num)
+      return num == n
+    };
+
+    console.log(canPlaceFlowers([0,0,1,0,0], 2))
+
+  </script>
+</body>
+</html>
