@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10. 正则表达式匹配</title>
+</head>
+<body>
+  <div>
+    <a href="https://leetcode-cn.com/problems/regular-expression-matching/">10. 正则表达式匹配</a>
+  </div>
+  <script>
+    
+    function isMatch(s) {
+      let reg = /^([a-z]+)\1+$/
+      return reg.test(s)
+    };
+
+    console.log(isMatch('asdasdasda'))
+
+  </script>
+</body>
+</html>
